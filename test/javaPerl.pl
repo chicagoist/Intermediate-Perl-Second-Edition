@@ -43,8 +43,6 @@ use Inline Java => <<'END_OF_JAVA_CODE', package => 'ok::test';
          return i - j ;
       }
    }
-
-
 END_OF_JAVA_CODE
 
 use Inline Java => <<'END_OF_JAVA_CODE', package => 'test::test';
@@ -67,22 +65,17 @@ import java.lang.*;
        return str;
       }
    }
-
 END_OF_JAVA_CODE
 
 use Inline Java => <<'END_OF_JAVA_CODE', package => 'gfl::test';
-
 import java.util.Objects;
 import java.lang.*;
 
 class GFL {
-
   public GFL () {
   System.out.println("Java from Perl GFL!");
   }
-
     public void testGFL() {
-
         System.out.println();
         ODTask task1 = new ODTask();
         task1.setWord("HelloWorld");
@@ -104,7 +97,6 @@ class GFL {
         System.out.println("(ODTaskDuoble class) taskDouble.getId = " + taskDouble.getId());
         System.out.println();
 
-
         System.out.print("(ODTask class) task1.equals(task2) = ");
         System.out.println(task1.equals(task2));
         System.out.println();
@@ -120,7 +112,6 @@ class GFL {
         System.out.print("(ODTask class != ODTaskDuoble class) Objects.equals(task1,taskDouble) = ");
         System.out.println(Objects.equals(task1,taskDouble));
         System.out.println();
-
 
         if(task1.hashCode() == task2.hashCode()) {
             System.out.println("EQALS! task1.hashCode() == task2.hashCode()");
@@ -147,7 +138,6 @@ class GFL {
 }
 
 class ODTask {
-
     private String word = new String();
     private int id;
 
@@ -161,24 +151,19 @@ class ODTask {
         this.id = id;
     }
 
-
     public String getWord() {
-
         return this.word;
     }
 
     public void setWord(String word) {
-
         this.word = word;
     }
 
     public Integer getId() {
-
         return this.id;
     }
 
     public void setId(Integer id) {
-
         this.id = id;
     }
 
@@ -197,41 +182,32 @@ class ODTask {
 }
 
 class ODTaskDuoble {
-
     private String word = new String();
     private int id;
-
 
     public ODTaskDuoble() {
         setWord("default");
         setId(0);
-
     }
 
     public ODTaskDuoble(String args, Integer id) {
         this.word = args;
         this.id = id;
-
     }
 
-
     public String getWord() {
-
         return this.word;
     }
 
     public void setWord(String word) {
-
         this.word = word;
     }
 
     public Integer getId() {
-
         return this.id;
     }
 
     public void setId(Integer id) {
-
         this.id = id;
     }
 
@@ -248,9 +224,6 @@ class ODTaskDuoble {
         return Objects.hash(word, id);
     }
 }
-
-
-
 END_OF_JAVA_CODE
 
 # use Inline::Java;
