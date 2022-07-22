@@ -12,7 +12,7 @@ use lib "$Bin";
 #= BEGIN{@ARGV=map Encode::decode(#\$_,1),@ARGV;}
 # BEGIN{@ARGV = map decode_utf8(#\$_, 1), @ARGV;}
 # use open qw(:std :encoding(UTF-8));
-use utf8::all 'GLOBAL';
+# use utf8::all 'GLOBAL';
 # use Encode::Locale;
 # use Encode;
 # use diagnostics;
