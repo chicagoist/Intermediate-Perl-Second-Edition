@@ -1,1 +1,0 @@
-tar -zxvf Animal-0.01.tar.gz
