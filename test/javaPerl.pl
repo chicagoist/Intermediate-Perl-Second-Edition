@@ -20,14 +20,14 @@ use lib "$Bin";
 
 use strict;
 use warnings FATAL => 'all';
-use autodie qw(:all);
+#use autodie qw(:all);
 use utf8;
 binmode(STDIN, ':utf8');
 binmode(STDOUT, ':utf8');
 use Data::Dumper;
-use Bundle::Camelcade; # for Intellij IDEA
-use YAML;
-use DDP;
+#use Bundle::Camelcade; # for Intellij IDEA
+#use YAML;
+#use DDP;
 
 use Inline Java => <<'END_OF_JAVA_CODE', package => 'ok::test';
 
