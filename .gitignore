@@ -37,3 +37,6 @@ inc/
 /*.zip
 /IntermediatePerlDownloads
 IntermediatePerlDownloads
+_Inline
+.run
+
