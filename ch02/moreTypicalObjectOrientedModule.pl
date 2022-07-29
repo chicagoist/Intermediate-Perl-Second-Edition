@@ -41,7 +41,6 @@ my $value = Math::BigInt->new(2); # start with 2
 $value->bpow(10);               # take 2**10
 my $tkValue = $value->bstr;         # print it out
 say $tkValue;
-
 my $mw = MainWindow->new;
 $mw->title("Hello World");
 $mw->Button(-text => $tkValue, -command => sub { exit })->pack;
