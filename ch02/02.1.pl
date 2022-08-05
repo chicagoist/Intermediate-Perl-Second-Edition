@@ -27,7 +27,7 @@ use Cwd;
 
 # File 02.1.pl
 # https://github.com/chicagoist/Intermediate-Perl-Second-Edition
-# https://www.masteringperl.org/
+# https://www.intermediateperl.com/
 # https://www.linkedin.com/in/legioneroff/
 
 # Read the list of files in the current directory and convert the names to
@@ -36,7 +36,7 @@ use Cwd;
 # come with Perl, should help. Print each path with four spaces before it and
 # a newline after it.
 
-
+# не работает в Windows
 for (@ARGV) {
     say "    ".File::Spec->catfile( getcwd(),$_);
 }
