@@ -31,6 +31,7 @@ use DDP;
 
 use File::Spec;
 use File::Spec::Win32;
+use Cwd;
 
 
 my $filespec = File::Spec->catfile( "/home/legioner/","data.txt");
@@ -38,3 +39,6 @@ my $win_filespec = File::Spec::Win32->catfile( 'C:\Users\vdundukov\STUDY\C++','p
 say "";
 say $filespec;
 say $win_filespec;
+
+say File::Spec->catfile( getcwd(),"whatIsInCore.pl");
+say File::Spec->curdir();
