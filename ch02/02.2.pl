@@ -15,14 +15,14 @@ our $VERSION = '0.01';
 # use diagnostics;
 use strict;
 use warnings FATAL => 'all';
-use autodie qw(:all);
+#use autodie qw(:all);
 use utf8;
 binmode(STDIN, ':utf8');
 binmode(STDOUT, ':utf8');
 use Data::Dumper;
-use Bundle::Camelcade; # for Intellij IDEA
-use YAML;
-use DDP;
+#use Bundle::Camelcade; # for Intellij IDEA
+#use YAML;
+#use DDP;
 use Cwd;
 
 # File 02.1.pl
