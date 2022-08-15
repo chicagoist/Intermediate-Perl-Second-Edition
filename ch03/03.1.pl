@@ -41,12 +41,20 @@ my $cwd = getcwd;
 #     print "$files\n";
 # }
 my @files = ();
+my @bytesFiles = ();
 
 while(<*>) {
     next if /^\s*$/;
-    #print "    ", File::Spec->catfile( $cwd, $_ ), "\n";
-
-    push @files,"    ".File::Spec->catfile( $cwd, $_ ), "\n";
+    push @files, File::Spec->catfile( $cwd, $_ );
 }
 
-print join(" ",@files);
+@bytesFiles = grep {
+    defined $_ && $_ =~ /^\s*$/;
+    $_ if 1000 >= -s $_;
+} @files;
+
+
+print join("\n", @bytesFiles),"\n";
+
+
+#print join("\n",@files);
