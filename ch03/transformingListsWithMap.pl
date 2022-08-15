@@ -144,9 +144,9 @@ a map in place of a grep, but not vice versa.
 TEXT
 my @result4 = map {
     my @digits = split //, $_;
-    say "@digits";
+    #say "@digits";
     if ($digits[-1] == 4) {
-        say "d"."@digits";
+        say "@digits";
         @digits;
     } else {
         (  );

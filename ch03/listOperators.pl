@@ -39,6 +39,3 @@ push @castaways, 'push';
 unshift @castaways, 'unshift';
 
 say join(" ", @castaways);
-
-
-
