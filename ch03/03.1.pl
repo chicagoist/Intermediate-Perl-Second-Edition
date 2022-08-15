@@ -23,10 +23,30 @@ use Data::Dumper;
 use Bundle::Camelcade; # for Intellij IDEA
 use YAML;
 use DDP;
-
+use Cwd;
 
 # File 03.1.pl
 # https://github.com/chicagoist/Intermediate-Perl-Second-Edition
 # https://www.intermediateperl.com/
 # https://www.linkedin.com/in/legioneroff/
 
+#  Write a program that takes a list of filenames on the command line and uses
+# grep to select the ones whose size is less than 1,000 bytes. Use map to
+# transform the strings in this list, putting four space characters in front
+# of each and a newline character after. Print the resulting list.
+
+my $cwd = getcwd;
+# foreach my $files ( glob( ".* *" ) ) {
+#     #print "    ", File::Spec->catfile( $cwd, $file ), "\n";
+#     print "$files\n";
+# }
+my @files = ();
+
+while(<*>) {
+    next if /^\s*$/;
+    #print "    ", File::Spec->catfile( $cwd, $_ ), "\n";
+
+    push @files,"    ".File::Spec->catfile( $cwd, $_ ), "\n";
+}
+
+print join(" ",@files);
