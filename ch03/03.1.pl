@@ -24,3 +24,9 @@ use Bundle::Camelcade; # for Intellij IDEA
 use YAML;
 use DDP;
 
+
+# File 03.1.pl
+# https://github.com/chicagoist/Intermediate-Perl-Second-Edition
+# https://www.intermediateperl.com/
+# https://www.linkedin.com/in/legioneroff/
+
