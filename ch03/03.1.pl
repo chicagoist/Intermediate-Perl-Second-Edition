@@ -53,3 +53,20 @@ while(<*>) {
 }
 
 print @result;
+
+
+# Exercise 1
+# Here’s one way to do it. The command line arguments show up in the special
+# array @ARGV so we use that for our input list. The file test operator −s
+# works on $_ by default, and that’s the current element that grep tests.
+# All of the files with sizes in bytes smaller than 1,000 bytes end up in
+# @smaller_than_1000. That array becomes the input for the map, which takes
+# each element and returns it with spaces tacked on the front and a newline
+# on the end:
+
+#   my @smaller_than_1000 = grep { −s < 1000 } @ARGV;
+#   print map { "    $_\n" } @smaller_than_1000;
+
+# Typically, we’ll do that without the intermediate array though:
+
+#   print map { "    $_\n" } grep { −s < 1000 } @ARGV;
