@@ -52,9 +52,9 @@ foreach my $operator ( qw(+ - * /) ) {
     print "2 $operator 2 is $result\n";
  } # не работает на Windows
 TEXT
-# foreach my $operator ( qw(+ - * /) ) {
-#     my $result = eval '2 $operator 2';
-#     print "2 $operator 2 is $result\n";
-# }
+foreach my $operator ( qw(+ - * /) ) {
+    my $result = eval "2 $operator 2";
+    print "2 $operator 2 is $result\n";
+}
 print 'The quotient is ', eval '5 /', "\n";
 warn $@ if defined $@;
