@@ -36,25 +36,20 @@ use Cwd;
 # of each and a newline character after. Print the resulting list.
 
 my $cwd = getcwd;
-# foreach my $files ( glob( ".* *" ) ) {
-#     #print "    ", File::Spec->catfile( $cwd, $file ), "\n";
-#     print "$files\n";
-# }
 my @files = ();
 my @bytesFiles = ();
+my @result = ();
 
 while(<*>) {
     next if /^\s*$/;
     push @files, File::Spec->catfile( $cwd, $_ );
+    @bytesFiles = grep {
+        $_ if 1000 >= -s $_;
+    } @files;
+
+    if(@bytesFiles != @result) {
+        push @result, map {"    " . $_ . "\n"} @bytesFiles;
+    }
 }
 
-@bytesFiles = grep {
-    defined $_ && $_ =~ /^\s*$/;
-    $_ if 1000 >= -s $_;
-} @files;
-
-
-print join("\n", @bytesFiles),"\n";
-
-
-#print join("\n",@files);
+print @result;
