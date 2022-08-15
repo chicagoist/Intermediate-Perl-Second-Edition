@@ -80,4 +80,77 @@ eval {
     use DDP;
     my %hash = map {$_, 3 * $_} @input_numbers;
     p % hash;
+};
+
+print <<'TEXT';
+That was fine for making a meaningful value for each hash key, but sometimes
+we don’t care about the value because we want to use the hash as an easier
+way to check that an element is in a list. In that case, we can give the keys
+any value just to have the key in the hash. Using 1 is a good value to use:
+
+my %hash = map { $_, 1 } @castaways;
+my $person = 'Gilligan';
+if( $hash{$person} ) {
+ print "$person is a castaway.\n";
 }
+
+TEXT
+my @castaways = qw(Jackson MadMax Snake);
+my %hash = map { $_, 1 } @castaways;
+my $person = 'Gilligan';
+if( $hash{$person} ) {
+    print "$person is a castaway.\n";
+}else {
+    print "Not exists a ".$person." in a castaway.\n";
+}
+
+%hash = map { $_, 1 } 'Gilligan';
+if( $hash{$person} ) {
+    print "$person is a castaway.\n";
+}else {
+    print "Not exists a ".$person." in a castaway.\n";
+}
+
+print<<'TEXT';
+
+That map is pretty versatile; we can produce any number of output items for
+each input item. And we don’t always need to produce the same number of output
+items. We see what happens when we break apart the digits:
+
+my @result = map { split // } @input_numbers; # 1 2 4 8 16 32 64
+p @result3;
+
+TEXT
+
+my @result3 = map { split // } @input_numbers; # 1 2 4 8 16 32 64
+
+p @result3;
+
+print <<'TEXT';
+my @result = map {
+    my @digits = split //, $_;
+    if ($digits[−1] == 4) {
+        @digits;
+        } else {
+            (  );
+            }
+    } @input_numbers;
+
+If the last digit is 4, we return the digits themselves by evaluating @digits,
+which is in list context. If the last digit is not 4, we return an empty list,
+effectively removing results for that particular item. Thus, we can always use
+a map in place of a grep, but not vice versa.
+
+TEXT
+my @result4 = map {
+    my @digits = split //, $_;
+    say "@digits";
+    if ($digits[-1] == 4) {
+        say "d"."@digits";
+        @digits;
+    } else {
+        (  );
+    }
+} @input_numbers; # 1 2 4 8 16 32 64
+
+p @result4;
