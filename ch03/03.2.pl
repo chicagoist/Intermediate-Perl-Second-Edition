@@ -63,8 +63,8 @@ while(readdir $dh) {
 
 # ANSWER
 # We chose to use our home directory as the hardcoded directory. When we call
-# chdir without an argument, it goes to our home directory (so this is one of
-# the few places where Perl doesn’t use $_ as the default). After that, an
+# chair without an argument, it goes to our home directory (so this is one of
+# the few places where Perl doesn't use $_ as the default). After that, an
 # infinite while loop keeps our code running, at least until  we can’t satisfy
 # the condition to last, which breaks us out of the loop. Look at the condition
 # carefully: we don’t test for truth.
