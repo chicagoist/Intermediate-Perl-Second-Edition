@@ -73,7 +73,7 @@ while(readdir $dh) {
 # and the empty string (hitting enter) stop the loop. Once we have our regular
 # expression, we do the same thing we did in the previous answer. This time,
 # we use the result of glob as the input list and a pattern match inside the
-# grep. We wrap an eval {} around the pattern match in case the pattern doesn’t
+# grep. We wrap an eval {} around the pattern match in case the pattern doesn't
 # compile (for instance, it has an unmatched parenthesis or square bracket):
 
 # chdir; # go to our home directory
