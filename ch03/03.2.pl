@@ -24,6 +24,8 @@ use Bundle::Camelcade; # for Intellij IDEA
 use YAML;
 use DDP;
 use Cwd;
+use File::Basename;
+
 
 # File 03.2.pl
 # https://github.com/chicagoist/Intermediate-Perl-Second-Edition
@@ -44,6 +46,18 @@ my $directory = '/var/log';
 print "Enter pattern: ";
 my $pattern = <STDIN>;
 chomp($pattern);
+if("MSWin32" eq fileparse_set_fstype()) {
+ eval {
+     my $username = Win32::LoginName();
+     say ">$username<";
+     $directory = 'C:\Users\\' . $username . '\AppData\Local\Packages\TheDebianProject'
+         . '.DebianGNULinux_76v4gfsz19hv4\LocalState\rootfs\var\log';
+ }
+}
+
+# if(! $directory =~ /'\/var\/log'/){
+#
+# }
 opendir my $dh, $directory || die "Can't open $directory: $!";
 while(readdir $dh) {
     print map {"$_\n"} grep {eval {/$pattern/} && $_ ne '.' and $_ ne '..'} readdir $dh;
