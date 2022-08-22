@@ -54,10 +54,6 @@ if("MSWin32" eq fileparse_set_fstype()) {
          . '.DebianGNULinux_76v4gfsz19hv4\LocalState\rootfs\var\log';
  }
 }
-
-# if(! $directory =~ /'\/var\/log'/){
-#
-# }
 opendir my $dh, $directory || die "Can't open $directory: $!";
 while(readdir $dh) {
     print map {"$_\n"} grep {eval {/$pattern/} && $_ ne '.' and $_ ne '..'} readdir $dh;
