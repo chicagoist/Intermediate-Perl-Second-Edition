@@ -61,6 +61,7 @@ while(readdir $dh) {
 }
 
 
+
 # ANSWER
 # We chose to use our home directory as the hardcoded directory. When we call
 # chair without an argument, it goes to our home directory (so this is one of
