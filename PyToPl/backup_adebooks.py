@@ -70,8 +70,7 @@ class AbeBooks:
                    'itemIsbn13': isbn}
         return self.__get_recomendations(payload)
 
-
-book = AbeBooks()
-print(book.getRecommendationsByISBN(9781449393090))
+# book = AbeBooks()
+# print(book.getRecommendationsByISBN(9781449393090))
 
 
