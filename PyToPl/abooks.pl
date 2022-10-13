@@ -31,4 +31,5 @@ use Abebooks;
 
 my $ade_script = Abebooks->new();
 $ade_script->getPriceByISBN(9781449393090);
-$ade_script->__get_price();
+$ade_script->getRecommendationsByISBN(9781449393090);
+#$ade_script->__get_price();

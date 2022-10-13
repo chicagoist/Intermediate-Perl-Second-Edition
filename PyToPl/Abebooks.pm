@@ -38,41 +38,77 @@ package Abebooks {
 
     use Moose;
     use MooseX::Privacy;
-        #use Moose::Role;
+    #use Moose::Role;
 
     use Moose::Util::TypeConstraints;
     use namespace::autoclean;
     use HTTP::Request::Common;
     use LWP::UserAgent;
+    use LWP::UserAgent::JSON;
+    #use HTTP::Request::JSON;
+    use JSON;
 
     private_method __get_price => sub {
-        #p @_;
-        my $self = shift;
-        #p $self;
-        my $payload = $self;
-        #p  $payload;
+        my $payload = shift;
         my $url = 'https://www.abebooks.com/servlet/DWRestService/pricingservice';
-
-        my $ua_adebooks = LWP::UserAgent->new;
-        my $req = POST $url,
+        my $uaGetPrice = LWP::UserAgent::JSON->new;
+        my $reqGetPrice = POST $url,
             Content_Type => 'application/x-www-form-urlencoded; charset=UTF-8',
-        Content       => [$payload];
+            Content      => [ $payload ];
+        my %respond_adebooks = %{$uaGetPrice->request($reqGetPrice)};
 
-        my %respond_adebooks = %{$ua_adebooks->request($req)};
-
-        #p %respond_adebooks;
-
-        if ($respond_adebooks{_rc} == 200) {
-            say '${$respond_adebooks}->{success} = true';
-            #return [%respond_adebooks];
-        }
-        else {
-            die %respond_adebooks;
-        }
-
+        map {
+            if ($_ =~ /"success":true/)
+            {
+                say 'return';
+                return to_json($respond_adebooks{_content});
+            } else
+            {
+                say 'die';
+                eval {
+                    die $uaGetPrice && %respond_adebooks;
+                };
+            }
+        } $respond_adebooks{_content};
     };
 
-    sub getPriceByISBN {
+    private_method __get_recomendations => sub {
+
+        my $payload = shift;
+        p %{$payload};
+        my $header = [ 'Content-Type' => 'application/json; charset=UTF-8' ];
+        my $encoded_data = encode_json($payload);
+        say '$payload = ', $payload->{pageId};
+        p $encoded_data;
+        my $url = 'https://www.abebooks.com/servlet/RecommendationsApi';
+        my $uaRecomendations = LWP::UserAgent->new;
+        my $reqGetRecomendations = GET 'https://www.abebooks'
+            . '.com/servlet/RecommendationsApi?pageId=' . $payload->{pageId}
+            . '&itemIsbn13='
+            . $payload->{itemIsbn13},
+            Content_Type => 'application/json; charset=UTF-8';
+
+        my $respondRecomendations = $uaRecomendations->request($reqGetRecomendations);
+
+        #p $respondRecomendations;
+            map {
+                if ($_ =~ /"slotName":.*/)
+                {
+                    say 'return';
+                    say $respondRecomendations->{_content};
+                    return to_json($respondRecomendations->{_content});
+                } else
+                {
+                    say 'die';
+                    eval {
+                        die $uaRecomendations && $respondRecomendations;
+                    };
+                }
+            } $respondRecomendations->{_content};
+    };
+
+    sub getPriceByISBN
+    {
         my $self = shift;
         my $isbn = shift;
         chomp($isbn);
@@ -82,23 +118,37 @@ package Abebooks {
         # isbn (int) - a book's ISBN code
         # """
         my %payload = (
-            action => 'getPricingDataByISBN',
-            isbn => $isbn,
+            action    => 'getPricingDataByISBN',
+            isbn      => $isbn,
             container => "pricingService-{}.$isbn"
         );
 
-#p %payload;
-
-       __get_price(\%payload);
-
+        __get_price(\%payload);
 
     }
+
+    sub getRecommendationsByISBN
+    {
+        my $self = shift;
+        my $isbn = shift;
+
+        # """
+        # Parameters
+        # ----------
+        # isbn (int) - a book's ISBN code
+        # """
+
+        my %payload = (
+            pageId     => 'plp',
+            itemIsbn13 => $isbn
+        );
+        return __get_recomendations(\%payload);
+    }
+
 
     # sub getPricingDataByISBN {
     #
     # }
-
-
 
 
     # with 'Animal'; # for Class but not for Role
@@ -128,7 +178,7 @@ package Abebooks {
 
     __PACKAGE__->meta->make_immutable; # or commit for Role
 
-1;
+    1;
 }
 __END__
 
