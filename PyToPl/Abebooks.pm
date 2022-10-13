@@ -83,7 +83,8 @@ package Abebooks {
         my $url = 'https://www.abebooks.com/servlet/RecommendationsApi';
         my $uaRecomendations = LWP::UserAgent->new;
         my $reqGetRecomendations = GET 'https://www.abebooks'
-            . '.com/servlet/RecommendationsApi?pageId=' . $payload->{pageId}
+            . '.com/servlet/RecommendationsApi?pageId='
+            . $payload->{pageId}
             . '&itemIsbn13='
             . $payload->{itemIsbn13},
             Content_Type => 'application/json; charset=UTF-8';
