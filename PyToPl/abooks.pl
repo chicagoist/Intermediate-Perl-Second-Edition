@@ -32,4 +32,6 @@ use Abebooks;
 my $ade_script = Abebooks->new();
 $ade_script->getPriceByISBN(9781449393090);
 $ade_script->getRecommendationsByISBN(9781449393090);
-#$ade_script->__get_price();
+$ade_script->getPriceByAuthorTitle('Schwartz, Randal L.', 'Learning Perl:');
+$ade_script->getPriceByAuthorTitleBinding('Schwartz, Randal L.', 'Learning '.'Perl:', 'hard');
+$ade_script->__get_price();

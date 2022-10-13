@@ -73,5 +73,6 @@ class AbeBooks:
 
 book = AbeBooks()
 print(book.getRecommendationsByISBN(9781449393090))
+print(book.getPriceByAuthorTitle('Schwartz, Randal L.', 'Learning Perl:'))
 
 
