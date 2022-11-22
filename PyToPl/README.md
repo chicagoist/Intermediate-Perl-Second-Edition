@@ -1,4 +1,4 @@
-# Python Wrapper for AbeBooks.com REST API
+# Python Wrapper to Perl for AbeBooks.com REST API
 
 ## Usage
 
