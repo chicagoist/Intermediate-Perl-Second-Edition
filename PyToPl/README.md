@@ -1,8 +1,10 @@
-Python Wrapper for AbeBooks.com REST API
-Usage
+# Python Wrapper for AbeBooks.com REST API
+
+## Usage
 
 Search book prices by ISBN:
 
+```python
 from abebooks import AbeBooks
 
 ab = AbeBooks()
@@ -15,3 +17,4 @@ if results['success']:
 print(best_new['bestPriceInPurchaseCurrencyWithCurrencySymbol'])
 # Best Used Price
 print(best_used['bestPriceInPurchaseCurrencyWithCurrencySymbol'])
+```
